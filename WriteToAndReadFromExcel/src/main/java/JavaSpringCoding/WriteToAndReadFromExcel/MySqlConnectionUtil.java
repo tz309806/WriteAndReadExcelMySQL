@@ -9,7 +9,7 @@ import com.mysql.jdbc.Statement;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class MySqlConnectionUtil {
-
+//fff
 	final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	final String DB_URL = "jdbc:mysql://localhost:3306";
 	final String USER = "root";
