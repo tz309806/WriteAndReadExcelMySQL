@@ -1,14 +1,16 @@
 package JavaSpringCoding.WriteToAndReadFromExcel;
 
+import java.sql.SQLException;
+
 public class AppTesting {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException,
+			SQLException {
 
-		MySqlConnectionUtil testConn = new MySqlConnectionUtil();
-		
-		testConn.MySqlconnector();
-		
-		
+		WriteToExcel wte = new WriteToExcel();
+
+		wte.WriteNReadXecl();
+
 	}
 
 }

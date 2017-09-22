@@ -5,23 +5,23 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 import com.mysql.jdbc.PreparedStatement;
 
 public class MySqlConnectionUtil {
 
-	final static Logger	logger		= Logger
-														.getLogger(MySqlConnectionUtil.class);
-
-	final String			JDBC_DRIVER	= "com.mysql.jdbc.Driver";
-	final String			DB_URL		= "jdbc:mysql://localhost:3306";
-	final String			USER			= "root";
-	final String			PASS			= "Tz64220866";
+	final String	JDBC_DRIVER	= "com.mysql.jdbc.Driver";
+	final String	DB_URL		= "jdbc:mysql://localhost:3306";
+	final String	USER			= "root";
+	final String	PASS			= "Tz64220866";
 
 	public void MySqlconnector() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		Row row = null;
+		Cell cell = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
