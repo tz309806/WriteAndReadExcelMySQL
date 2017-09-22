@@ -5,19 +5,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Statement;
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.mysql.jdbc.PreparedStatement;
 
 public class MySqlConnectionUtil {
-//fff
-	final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	final String DB_URL = "jdbc:mysql://localhost:3306";
-	final String USER = "root";
-	final String PASS = "Tz64220866";
+	// fff
+	final String	JDBC_DRIVER	= "com.mysql.jdbc.Driver";
+	final String	DB_URL		= "jdbc:mysql://localhost:3306";
+	final String	USER			= "root";
+	final String	PASS			= "Tz64220866";
 
 	public void MySqlconnector() {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -25,23 +24,24 @@ public class MySqlConnectionUtil {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			System.out.println("Creating Statement");
-			stmt = (Statement) conn.createStatement();
+
 			String sql;
-			sql = "SELECT ADDRESS_ID, ADDRESS, PHONE FROM SAKILA.ADDRESS";
+			sql = "SELECT NAME, COUNTRYCODE, DISTRICT FROM WORLD.CITY WHERE ID=?";
+			stmt = (PreparedStatement) conn.prepareStatement(sql);
+			stmt.setInt(1, 6);
 
 			ResultSet rs = stmt.executeQuery(sql);
+
 			while (rs.next()) {
 				// Retrieve by column name
 				int address_id = rs.getInt("ADDRESS_ID");
 				String phone = rs.getString("PHONE");
 				String address = rs.getString("ADDRESS");
-				
 
 				// Display values
 				System.out.print("Address ID: " + address_id);
 				System.out.print(", Phone number: " + phone);
 				System.out.print(", Address: " + address);
-
 
 			}
 			rs.close();
@@ -74,7 +74,8 @@ public class MySqlConnectionUtil {
 
 		}
 	}
-	public static void main(String[] args){
-		
+
+	public static void main(String[] args) {
+
 	}
 }
