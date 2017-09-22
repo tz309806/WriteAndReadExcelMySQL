@@ -24,7 +24,7 @@ public class MySqlConnectionUtil {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			System.out.println("Creating Statement");
-
+			//
 			String sql;
 			sql = "SELECT NAME, COUNTRYCODE, DISTRICT FROM WORLD.CITY WHERE ID=?";
 			stmt = (PreparedStatement) conn.prepareStatement(sql);
