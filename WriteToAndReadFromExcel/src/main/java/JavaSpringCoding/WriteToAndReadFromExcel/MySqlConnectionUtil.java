@@ -5,14 +5,19 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.mysql.jdbc.PreparedStatement;
 
 public class MySqlConnectionUtil {
-	// fff
-	final String	JDBC_DRIVER	= "com.mysql.jdbc.Driver";
-	final String	DB_URL		= "jdbc:mysql://localhost:3306";
-	final String	USER			= "root";
-	final String	PASS			= "Tz64220866";
+
+	final static Logger	logger		= Logger
+														.getLogger(MySqlConnectionUtil.class);
+
+	final String			JDBC_DRIVER	= "com.mysql.jdbc.Driver";
+	final String			DB_URL		= "jdbc:mysql://localhost:3306";
+	final String			USER			= "root";
+	final String			PASS			= "Tz64220866";
 
 	public void MySqlconnector() {
 		Connection conn = null;
@@ -30,26 +35,25 @@ public class MySqlConnectionUtil {
 			stmt = (PreparedStatement) conn.prepareStatement(sql);
 			stmt.setInt(1, 6);
 
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				// Retrieve by column name
-				int address_id = rs.getInt("ADDRESS_ID");
-				String phone = rs.getString("PHONE");
-				String address = rs.getString("ADDRESS");
+				String NAME = rs.getString("NAME");
+				String COUNTRYCODE = rs.getString("COUNTRYCODE");
+				String DISTRICT = rs.getString("DISTRICT");
 
 				// Display values
-				System.out.print("Address ID: " + address_id);
-				System.out.print(", Phone number: " + phone);
-				System.out.print(", Address: " + address);
+				System.out.print("NAME: " + NAME);
+				System.out.print(", COUNTRYCODE number: " + COUNTRYCODE);
+				System.out.print(", DISTRICT: " + DISTRICT);
 
 			}
 			rs.close();
-			System.out.println("Ruleset closed");
+
 			stmt.close();
-			System.out.println("Statement closed");
+
 			conn.close();
-			System.out.println("Connection closed");
 
 		} catch (SQLException se) {
 			// Handle errors for JDBC

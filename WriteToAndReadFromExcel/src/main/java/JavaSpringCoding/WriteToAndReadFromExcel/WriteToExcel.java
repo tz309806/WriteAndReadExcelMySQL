@@ -4,29 +4,25 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Iterator;
 
-import org.apache.poi.ss.format.CellFormatType;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.streaming.SXSSFRow.CellIterator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class WriteToExcel {
 
-	private static final String FILE_NAME = "C:\\JAVAEXCELPRACTICE\\WriteToExcelPractice.xlsx";
-
+	private static final String	FILE_NAME	= "C:\\JAVAEXCELPRACTICE\\WriteToExcelPractice.xlsx";
 
 	public void WriteNReadXecl(String[] args) {
 		XSSFWorkbook workBook = new XSSFWorkbook();
 		XSSFSheet sheet = workBook.createSheet("Data types in JAVA");
-		MySqlConnectionUtil untilconn = new MySqlConnectionUtil();
-		untilconn.MySqlconnector();
+		MySqlConnectionUtil MySQL = new MySqlConnectionUtil();
+		MySQL.MySqlconnector();
 		Object[][] dataTypes = null;
 		int rowNum = 0;
 		System.out.println("Creating Excel now");
